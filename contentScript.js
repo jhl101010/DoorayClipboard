@@ -284,16 +284,19 @@ function appendButton(target) {
       buttonBar.removeChild(button)
     }
   }
-  const regex = new RegExp('\([[a-z0-9A-Z가-힣]*\]) ([a-z0-9가-힣\s]*)')
+  const regex = /(\[[a-z0-9A-Z가-힣]*\]) ([a-z0-9가-힣\s]*)/
+  const regexBlank = /[ ]/g
+  const regexSquareBracket = /[\[\]]/g
+
   const commitMessage = `[${title.replace(regex, '$2')}/${postNumber}]`
-  const numberMessage = commitMessage.replace(/ /gi, '-').replace(/\[/gi, '').replace(/\]/gi, '')
+  const branchName = commitMessage.replace(regexBlank, '-').replace(regexSquareBracket, '')
 
   let headerLinkLine = target.querySelector('div.header-link-line.layout-align-start-center.layout-row')
   let link = buttonBar.childNodes[1].getAttribute('data-clipboard-text')
   
   var numberButton = initButton(buttonIds[0], postNumber, postNumber)
   var commitButton = initButton(buttonIds[1], '커밋메시지',  commitMessage)
-  var branchButton = initButton(buttonIds[4], '브랜치명',  numberMessage)
+  var branchButton = initButton(buttonIds[4], '브랜치명',  branchName)
   var pullRequestButton = initButton(buttonIds[2], 'Pull메시지', '#' + projectName + '/' + postNumber + ': ' + title)
 
   let onelineText = postNumber + '/' + title
