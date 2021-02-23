@@ -1,16 +1,23 @@
-
 {
   "name": "Dooray Clipboard",
   "version": "1.0.3",
   "description": "Dooray에서 제목을 clipboad에 copy를 쉽게 해주자",
-  "permissions": ["activeTab"],
+  "permissions": [
+    "activeTab"
+  ],
   "manifest_version": 2,
   "content_scripts": [
     {
-      "matches": ["https://nhnent.dooray.com/*"],
+      "matches": [
+        "https://*.dooray.com/*"
+      ],
       "run_at": "document_end",
-      "css": ["notifications.css"],
-      "js": ["contentScript.js"]
+      "css": [
+        "notifications.css"
+      ],
+      "js": [
+        "contentScript.js"
+      ]
     },
     {
       "matches": [
@@ -18,17 +25,27 @@
         "https://alpha-mail.cloud.toast.com/toastmail/template/*"
       ],
       "run_at": "document_end",
-      "css": ["notifications.css"],
-      "js": ["email.js"]
+      "css": [
+        "notifications.css"
+      ],
+      "js": [
+        "email.js"
+      ]
     },
     {
-      "matches": ["https://github.nhnent.com/*"],
+      "matches": [
+        "https://github.nhnent.com/*"
+      ],
       "run_at": "document_end",
-      "js": ["github.js"]
+      "js": [
+        "github.js"
+      ]
     }
   ],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": [
+      "background.js"
+    ],
     "persistent": false
   }
 }

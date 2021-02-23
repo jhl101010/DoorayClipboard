@@ -261,7 +261,7 @@ function initButton(id, buttonTitle, copyText, elementId) {
 }
 
 function appendButton(target) {
-  let buttonIds = ['QFD1boxRNX0', 'QFD1boxRNX1', 'QFD1boxRNX2', 'QFD1boxRNX3']
+  let buttonIds = ['QFD1boxRNX0', 'QFD1boxRNX1', 'QFD1boxRNX2', 'QFD1boxRNX3', 'QFD1boxRNX4']
 
   var titleElement = target.querySelector('span.subject.ng-binding');
   if( titleElement === null) {
@@ -284,12 +284,18 @@ function appendButton(target) {
       buttonBar.removeChild(button)
     }
   }
+  const regex = new RegExp('\([[a-z0-9A-Z가-힣]*\]) ([a-z0-9가-힣\s]*)')
+  const commitMessage = `[${title.replace(regex, '$2')}/${postNumber}]`
+  const numberMessage = commitMessage.replace(/ /gi, '-').replace(/\[/gi, '').replace(/\]/gi, '')
+  const branchMessage = `${projectName}/${postNumber}`
 
   let headerLinkLine = target.querySelector('div.header-link-line.layout-align-start-center.layout-row')
   let link = buttonBar.childNodes[1].getAttribute('data-clipboard-text')
   
+  console.log('title 값', projectName)
   var numberButton = initButton(buttonIds[0], postNumber, postNumber)
-  var commitButton = initButton(buttonIds[1], '커밋메시지', postNumber + ' ' + title)
+  var commitButton = initButton(buttonIds[1], '커밋메시지',  commitMessage)
+  var branchButton = initButton(buttonIds[4], '브랜치명',  branchMessage)
   var pullRequestButton = initButton(buttonIds[2], 'Pull메시지', '#' + projectName + '/' + postNumber + ': ' + title)
 
   let onelineText = postNumber + '/' + title
@@ -305,6 +311,7 @@ function appendButton(target) {
   
   buttonBar.appendChild(numberButton)
   buttonBar.appendChild(commitButton)
+  buttonBar.appendChild(branchButton)
   buttonBar.appendChild(pullRequestButton)
   buttonBar.appendChild(messageWithLinkButton)
 }
