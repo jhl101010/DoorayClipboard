@@ -8,13 +8,9 @@
   "manifest_version": 2,
   "content_scripts": [
     {
-<<<<<<< HEAD
       "matches": [
         "https://*.dooray.com/*"
       ],
-=======
-      "matches": ["https://*.dooray.com/*"],
->>>>>>> a374e5ef8ff10f82bab9c00ebb3cd26a6bef3b5f
       "run_at": "document_end",
       "css": [
         "notifications.css"
