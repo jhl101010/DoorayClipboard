@@ -285,7 +285,8 @@ function appendButton(target) {
     }
   }
   const regex = new RegExp('\([[a-z0-9A-Z가-힣]*\]) ([a-z0-9가-힣\s]*)')
-  const commitMessage = `[${title.replace(regex, '$2')}/${postNumber}]`
+  // const commitMessage = `[${title.replace(regex, '$2')}/${postNumber}]`
+  const commitMessage = `[${projectName}/${postNumber}]`
   const numberMessage = commitMessage.replace(/ /gi, '-').replace(/\[/gi, '').replace(/\]/gi, '')
   const branchMessage = `${projectName}/${postNumber}`
 
